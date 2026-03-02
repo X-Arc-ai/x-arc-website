@@ -1,0 +1,2248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding | X-Arc</title>
+    <meta name="description" content="Configure your X-Arc digital intern. Tell us about your business, stack, and preferences.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><style>text{fill:%23111}@media(prefers-color-scheme:dark){text{fill:%23f0f0f0}}</style><text x='16' y='23' font-size='18' font-family='monospace' font-weight='700' text-anchor='middle'>XA</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           TOKENS
+           ============================================ */
+        :root {
+            --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+            --bg-body: #0a0a0b;
+            --bg-surface: #111113;
+            --bg-elevated: #19191b;
+            --border: #222225;
+            --border-accent: #4ade80;
+
+            --text-primary: #f0f0f0;
+            --text-secondary: #888;
+            --text-muted: #555;
+
+            --accent: #4ade80;
+            --accent-dim: rgba(74, 222, 128, 0.1);
+            --accent-text: #22c55e;
+        }
+
+        [data-theme="light"] {
+            --bg-body: #fafaf9;
+            --bg-surface: #fff;
+            --bg-elevated: #f5f5f4;
+            --border: #e5e5e3;
+            --border-accent: #22c55e;
+
+            --text-primary: #1a1a1a;
+            --text-secondary: #666;
+            --text-muted: #999;
+
+            --accent: #22c55e;
+            --accent-dim: rgba(34, 197, 94, 0.08);
+            --accent-text: #16a34a;
+        }
+
+        /* ============================================
+           RESET + BASE
+           ============================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        ::selection {
+            background: var(--accent-dim);
+            color: var(--accent-text);
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        .label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-text);
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .section-sub {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 540px;
+        }
+
+        /* ============================================
+           NAV
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 11, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        [data-theme="light"] nav {
+            background: rgba(250, 250, 249, 0.85);
+        }
+
+        .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-cta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 7px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+            color: var(--text-primary);
+        }
+
+        .nav-cta:hover {
+            border-color: var(--accent);
+            color: var(--accent-text);
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 1rem;
+            padding: 4px;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .theme-btn:hover { color: var(--text-primary); }
+
+        /* ============================================
+           BUTTONS
+           ============================================ */
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-body);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.85;
+        }
+
+        .btn-ghost {
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        /* ============================================
+           WIZARD LAYOUT
+           ============================================ */
+        .wizard-container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 24px;
+            padding-top: 120px;
+            padding-bottom: 96px;
+        }
+
+        .wizard-header {
+            margin-bottom: 48px;
+        }
+
+        .wizard-header .section-title {
+            margin-bottom: 8px;
+        }
+
+        .wizard-header .section-sub {
+            max-width: 480px;
+        }
+
+        /* ============================================
+           PROGRESS BAR
+           ============================================ */
+        .progress-bar {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 48px;
+        }
+
+        .progress-segment {
+            flex: 1;
+            height: 3px;
+            border-radius: 2px;
+            background: var(--border);
+            transition: background 0.3s ease;
+        }
+
+        .progress-segment.active,
+        .progress-segment.completed {
+            background: var(--accent);
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .progress-step-name {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-text);
+        }
+
+        .progress-step-count {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           FORM FIELDS
+           ============================================ */
+        .wizard-step {
+            display: none;
+        }
+
+        .wizard-step.active {
+            display: block;
+        }
+
+        .step-header {
+            margin-bottom: 32px;
+        }
+
+        .step-header h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+
+        .step-header p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .field-group {
+            margin-bottom: 28px;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .field-label .required {
+            color: var(--accent-text);
+            margin-left: 2px;
+        }
+
+        .field-hint {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+        .field-input {
+            width: 100%;
+            padding: 10px 14px;
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            line-height: 1.5;
+        }
+
+        .field-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .field-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+
+        .field-input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        textarea.field-input {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        textarea.field-input.mono {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        .field-error {
+            display: none;
+            font-size: 0.78rem;
+            color: #ef4444;
+            margin-top: 6px;
+        }
+
+        .field-error.visible {
+            display: block;
+        }
+
+        /* ============================================
+           RADIO GROUP
+           ============================================ */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .radio-option:hover {
+            border-color: var(--text-muted);
+        }
+
+        .radio-option.selected {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .radio-option input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            flex-shrink: 0;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+
+        .radio-option.selected input[type="radio"] {
+            border-color: var(--accent);
+        }
+
+        .radio-option.selected input[type="radio"]::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .radio-option span {
+            font-size: 0.88rem;
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           MULTI-SELECT CHIPS
+           ============================================ */
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 14px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .chip:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+
+        .chip.selected {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+            color: var(--accent-text);
+        }
+
+        .chip input[type="checkbox"] {
+            display: none;
+        }
+
+        /* ============================================
+           SLIDER (Range)
+           ============================================ */
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .slider-value {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-text);
+            text-align: center;
+        }
+
+        input[type="range"].field-slider {
+            width: 100%;
+            height: 4px;
+            appearance: none;
+            -webkit-appearance: none;
+            background: var(--border);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"].field-slider::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg-body);
+            box-shadow: 0 0 0 2px var(--accent);
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+        }
+
+        input[type="range"].field-slider::-webkit-slider-thumb:hover {
+            box-shadow: 0 0 0 4px var(--accent-dim);
+        }
+
+        input[type="range"].field-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg-body);
+            box-shadow: 0 0 0 2px var(--accent);
+            cursor: pointer;
+        }
+
+        input[type="range"].field-slider {
+            background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--slider-fill, 50%), var(--border) var(--slider-fill, 50%), var(--border) 100%);
+        }
+
+        /* ============================================
+           TOGGLE SWITCH
+           ============================================ */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .toggle-switch input {
+            display: none;
+        }
+
+        .toggle-track {
+            position: absolute;
+            inset: 0;
+            background: var(--border);
+            border-radius: 12px;
+            transition: background 0.3s;
+        }
+
+        .toggle-switch input:checked + .toggle-track {
+            background: var(--accent);
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch input:checked ~ .toggle-thumb {
+            transform: translateX(20px);
+        }
+
+        .toggle-label-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           FILE UPLOAD
+           ============================================ */
+        .file-upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .file-upload-area:hover {
+            border-color: var(--text-muted);
+            background: var(--bg-surface);
+        }
+
+        .file-upload-area.drag-over {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .file-upload-area input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-icon {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .file-upload-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .file-upload-hint {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .file-list {
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .file-item-name {
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+        }
+
+        .file-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0 4px;
+            transition: color 0.2s;
+        }
+
+        .file-item-remove:hover {
+            color: #ef4444;
+        }
+
+        /* ============================================
+           DYNAMIC REPEATABLE GROUP
+           ============================================ */
+        .repeatable-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .repeatable-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .repeatable-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .repeatable-card-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-text);
+        }
+
+        .repeatable-card-remove {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            transition: all 0.2s;
+        }
+
+        .repeatable-card-remove:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .add-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            background: none;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .add-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent-text);
+            background: var(--accent-dim);
+        }
+
+        /* ============================================
+           WIZARD NAVIGATION BUTTONS
+           ============================================ */
+        .wizard-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .wizard-nav .btn {
+            min-width: 120px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .wizard-nav .btn-primary {
+            margin-left: auto;
+        }
+
+        /* ============================================
+           REVIEW STEP
+           ============================================ */
+        .review-section {
+            margin-bottom: 32px;
+        }
+
+        .review-section-title {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-text);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .review-edit-btn {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 3px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .review-edit-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent-text);
+        }
+
+        .review-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .review-row {
+            display: flex;
+            background: var(--bg-surface);
+            padding: 12px 16px;
+            gap: 16px;
+        }
+
+        .review-key {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            min-width: 160px;
+            flex-shrink: 0;
+        }
+
+        .review-value {
+            font-size: 0.82rem;
+            color: var(--text-primary);
+            word-break: break-word;
+        }
+
+        .review-value.empty {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* ============================================
+           SUCCESS SCREEN
+           ============================================ */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 96px 24px;
+            max-width: 640px;
+            margin: 0 auto;
+            padding-top: 180px;
+        }
+
+        .success-screen.visible {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 24px;
+            color: var(--accent);
+        }
+
+        .success-screen h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .success-screen p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 440px;
+            margin: 0 auto 32px;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 640px) {
+            .wizard-container {
+                padding-top: 96px;
+                padding-bottom: 72px;
+            }
+            .step-header h2 { font-size: 1.15rem; }
+            .radio-group { gap: 6px; }
+            .chip-group { gap: 6px; }
+            .chip { padding: 6px 12px; font-size: 0.7rem; }
+            .repeatable-card { padding: 16px; }
+            .wizard-nav { margin-top: 36px; }
+            .review-row { flex-direction: column; gap: 4px; }
+            .review-key { min-width: 0; }
+            .nav-links { display: none; }
+            .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">X-ARC</a>
+            <div class="nav-links">
+                <a href="/#solution">Solution</a>
+                <a href="/#technology">Technology</a>
+                <a href="/#proof">Proof</a>
+                <a href="/#team">Team</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-btn" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon"></span>
+                </button>
+                <a href="https://cal.com/anasmoujahid/x-arc-discovery" class="nav-cta" target="_blank" rel="noopener">Hire Your Intern</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- WIZARD -->
+    <div class="wizard-container" id="wizard">
+        <div class="wizard-header">
+            <span class="label">Onboarding</span>
+            <h1 class="section-title">Configure your digital intern.</h1>
+            <p class="section-sub">Tell us about your business, stack, and preferences. We'll use this to train your intern before day one.</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-info">
+            <span class="progress-step-name" id="progress-step-name">Identity</span>
+            <span class="progress-step-count" id="progress-step-count">Step 1 of 8</span>
+        </div>
+        <div class="progress-bar" id="progress-bar">
+            <!-- 8 segments, generated by JS -->
+        </div>
+
+        <!-- Step 1: Identity -->
+        <div class="wizard-step active" data-step="0" id="step-identity">
+            <div class="step-header">
+                <h2>Who are you?</h2>
+                <p>Basic info about you and your company.</p>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="company_name">Company name <span class="required">*</span></label>
+                <input type="text" class="field-input" id="company_name" name="company_name" placeholder="Acme Corp" required>
+                <span class="field-error" id="company_name-error">Company name is required</span>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="your_name">Your name <span class="required">*</span></label>
+                <input type="text" class="field-input" id="your_name" name="your_name" placeholder="Jane Smith" required>
+                <span class="field-error" id="your_name-error">Your name is required</span>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Your role <span class="required">*</span></label>
+                <div class="radio-group" data-name="your_role" data-required="true">
+                    <label class="radio-option">
+                        <input type="radio" name="your_role" value="Founder">
+                        <span>Founder</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="your_role" value="Engineering Lead">
+                        <span>Engineering Lead</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="your_role" value="CTO">
+                        <span>CTO</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="your_role" value="PM">
+                        <span>PM</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="your_role" value="Other">
+                        <span>Other</span>
+                    </label>
+                </div>
+                <span class="field-error" id="your_role-error">Please select your role</span>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Industry</label>
+                <div class="radio-group" data-name="industry">
+                    <label class="radio-option">
+                        <input type="radio" name="industry" value="SaaS">
+                        <span>SaaS</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="industry" value="Fintech">
+                        <span>Fintech</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="industry" value="E-commerce">
+                        <span>E-commerce</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="industry" value="Healthcare">
+                        <span>Healthcare</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="industry" value="Agency">
+                        <span>Agency</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="industry" value="Other">
+                        <span>Other</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Company size</label>
+                <div class="radio-group" data-name="company_size">
+                    <label class="radio-option">
+                        <input type="radio" name="company_size" value="Solo">
+                        <span>Solo</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="company_size" value="2-10">
+                        <span>2-10</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="company_size" value="11-50">
+                        <span>11-50</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="company_size" value="51-200">
+                        <span>51-200</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="company_size" value="200+">
+                        <span>200+</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Company Context -->
+        <div class="wizard-step" data-step="1" id="step-company">
+            <div class="step-header">
+                <h2>Tell us about your company</h2>
+                <p>Help your intern understand what you do and how you think.</p>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="what_does_your_company_do">What does your company do? <span class="required">*</span></label>
+                <textarea class="field-input" id="what_does_your_company_do" name="what_does_your_company_do" placeholder="Describe your product/service in 1-2 sentences" required></textarea>
+                <span class="field-error" id="what_does_your_company_do-error">This field is required</span>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Company values</label>
+                <span class="field-hint">Select all that apply</span>
+                <div class="chip-group" data-name="company_values">
+                    <label class="chip"><input type="checkbox" name="company_values" value="Fast-moving">Fast-moving</label>
+                    <label class="chip"><input type="checkbox" name="company_values" value="Quality-first">Quality-first</label>
+                    <label class="chip"><input type="checkbox" name="company_values" value="Customer-obsessed">Customer-obsessed</label>
+                    <label class="chip"><input type="checkbox" name="company_values" value="Data-driven">Data-driven</label>
+                    <label class="chip"><input type="checkbox" name="company_values" value="Creative">Creative</label>
+                    <label class="chip"><input type="checkbox" name="company_values" value="Process-oriented">Process-oriented</label>
+                    <label class="chip"><input type="checkbox" name="company_values" value="Startup mentality">Startup mentality</label>
+                    <label class="chip"><input type="checkbox" name="company_values" value="Enterprise">Enterprise</label>
+                    <label class="chip"><input type="checkbox" name="company_values" value="Remote-first">Remote-first</label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="special_context">Special context</label>
+                <textarea class="field-input" id="special_context" name="special_context" placeholder="Regulatory requirements, key partnerships, anything your intern should know"></textarea>
+            </div>
+        </div>
+
+        <!-- Step 3: Technical Stack -->
+        <div class="wizard-step" data-step="2" id="step-stack">
+            <div class="step-header">
+                <h2>Your technical stack</h2>
+                <p>What does your intern need to know about your codebase?</p>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Primary languages <span class="required">*</span></label>
+                <span class="field-hint">Select all that apply</span>
+                <div class="chip-group" data-name="primary_languages" data-required="true">
+                    <label class="chip"><input type="checkbox" name="primary_languages" value="TypeScript">TypeScript</label>
+                    <label class="chip"><input type="checkbox" name="primary_languages" value="Python">Python</label>
+                    <label class="chip"><input type="checkbox" name="primary_languages" value="Go">Go</label>
+                    <label class="chip"><input type="checkbox" name="primary_languages" value="Rust">Rust</label>
+                    <label class="chip"><input type="checkbox" name="primary_languages" value="Java">Java</label>
+                    <label class="chip"><input type="checkbox" name="primary_languages" value="Ruby">Ruby</label>
+                    <label class="chip"><input type="checkbox" name="primary_languages" value="PHP">PHP</label>
+                </div>
+                <span class="field-error" id="primary_languages-error">Select at least one language</span>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Frameworks</label>
+                <div class="chip-group" data-name="frameworks">
+                    <label class="chip"><input type="checkbox" name="frameworks" value="React">React</label>
+                    <label class="chip"><input type="checkbox" name="frameworks" value="Next.js">Next.js</label>
+                    <label class="chip"><input type="checkbox" name="frameworks" value="Vue">Vue</label>
+                    <label class="chip"><input type="checkbox" name="frameworks" value="Django">Django</label>
+                    <label class="chip"><input type="checkbox" name="frameworks" value="FastAPI">FastAPI</label>
+                    <label class="chip"><input type="checkbox" name="frameworks" value="Rails">Rails</label>
+                    <label class="chip"><input type="checkbox" name="frameworks" value="Express">Express</label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Source control <span class="required">*</span></label>
+                <div class="radio-group" data-name="source_control" data-required="true">
+                    <label class="radio-option">
+                        <input type="radio" name="source_control" value="GitHub">
+                        <span>GitHub</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="source_control" value="GitLab">
+                        <span>GitLab</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="source_control" value="Bitbucket">
+                        <span>Bitbucket</span>
+                    </label>
+                </div>
+                <span class="field-error" id="source_control-error">Please select your source control</span>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Cloud provider</label>
+                <div class="chip-group" data-name="cloud_provider">
+                    <label class="chip"><input type="checkbox" name="cloud_provider" value="AWS">AWS</label>
+                    <label class="chip"><input type="checkbox" name="cloud_provider" value="GCP">GCP</label>
+                    <label class="chip"><input type="checkbox" name="cloud_provider" value="Azure">Azure</label>
+                    <label class="chip"><input type="checkbox" name="cloud_provider" value="Vercel">Vercel</label>
+                    <label class="chip"><input type="checkbox" name="cloud_provider" value="Cloudflare">Cloudflare</label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Database</label>
+                <div class="chip-group" data-name="database">
+                    <label class="chip"><input type="checkbox" name="database" value="PostgreSQL">PostgreSQL</label>
+                    <label class="chip"><input type="checkbox" name="database" value="MySQL">MySQL</label>
+                    <label class="chip"><input type="checkbox" name="database" value="MongoDB">MongoDB</label>
+                    <label class="chip"><input type="checkbox" name="database" value="Redis">Redis</label>
+                    <label class="chip"><input type="checkbox" name="database" value="SQLite">SQLite</label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="github_org">GitHub org / username <span class="required">*</span></label>
+                <input type="text" class="field-input" id="github_org" name="github_org" placeholder="your-org" required>
+                <span class="field-error" id="github_org-error">GitHub org is required</span>
+            </div>
+        </div>
+
+        <!-- Step 4: Communication & Voice -->
+        <div class="wizard-step" data-step="3" id="step-communication">
+            <div class="step-header">
+                <h2>Communication & voice</h2>
+                <p>How should your intern talk?</p>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Tone <span class="required">*</span></label>
+                <div class="slider-container">
+                    <div class="slider-labels">
+                        <span>Professional</span>
+                        <span>Casual</span>
+                    </div>
+                    <input type="range" class="field-slider" id="tone" name="tone" min="0" max="100" value="70" data-required="true">
+                    <div class="slider-value" id="tone-value">70</div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Verbosity <span class="required">*</span></label>
+                <div class="slider-container">
+                    <div class="slider-labels">
+                        <span>Concise</span>
+                        <span>Detailed</span>
+                    </div>
+                    <input type="range" class="field-slider" id="verbosity" name="verbosity" min="0" max="100" value="30" data-required="true">
+                    <div class="slider-value" id="verbosity-value">30</div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Emoji usage</label>
+                <div class="toggle-container">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="emoji_usage" name="emoji_usage">
+                        <span class="toggle-track"></span>
+                        <span class="toggle-thumb"></span>
+                    </label>
+                    <span class="toggle-label-text">Use emojis in communication</span>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="agent_name">Intern name</label>
+                <input type="text" class="field-input" id="agent_name" name="agent_name" placeholder="CCX" value="">
+                <span class="field-hint">What should your intern call itself? Default: CCX</span>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="communication_style">Communication preferences</label>
+                <textarea class="field-input" id="communication_style" name="communication_style" placeholder="Any specific preferences? e.g., &quot;always use Slack threads&quot;"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Proactive updates <span class="required">*</span></label>
+                <div class="radio-group" data-name="proactive_updates" data-required="true">
+                    <label class="radio-option">
+                        <input type="radio" name="proactive_updates" value="Minimal">
+                        <span>Minimal</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="proactive_updates" value="Moderate">
+                        <span>Moderate</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="proactive_updates" value="Detailed">
+                        <span>Detailed</span>
+                    </label>
+                </div>
+                <span class="field-error" id="proactive_updates-error">Please select update frequency</span>
+            </div>
+        </div>
+
+        <!-- Step 5: Workflow & Conventions -->
+        <div class="wizard-step" data-step="4" id="step-workflow">
+            <div class="step-header">
+                <h2>Workflow & conventions</h2>
+                <p>How does your team work? All fields are optional — skip what doesn't apply.</p>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">PR workflow</label>
+                <div class="radio-group" data-name="pr_workflow">
+                    <label class="radio-option">
+                        <input type="radio" name="pr_workflow" value="Branch + PR">
+                        <span>Branch + PR</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="pr_workflow" value="Direct to main">
+                        <span>Direct to main</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="pr_workflow" value="Trunk-based">
+                        <span>Trunk-based</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Merge strategy</label>
+                <div class="radio-group" data-name="merge_strategy">
+                    <label class="radio-option">
+                        <input type="radio" name="merge_strategy" value="Squash">
+                        <span>Squash</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="merge_strategy" value="Rebase">
+                        <span>Rebase</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="merge_strategy" value="Merge commit">
+                        <span>Merge commit</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="branch_naming">Branch naming convention</label>
+                <input type="text" class="field-input" id="branch_naming" name="branch_naming" placeholder="feat/, fix/, chore/">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Testing requirements</label>
+                <div class="chip-group" data-name="testing_requirements">
+                    <label class="chip"><input type="checkbox" name="testing_requirements" value="Unit tests">Unit tests</label>
+                    <label class="chip"><input type="checkbox" name="testing_requirements" value="Integration tests">Integration tests</label>
+                    <label class="chip"><input type="checkbox" name="testing_requirements" value="E2E tests">E2E tests</label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Code review</label>
+                <div class="radio-group" data-name="code_review">
+                    <label class="radio-option">
+                        <input type="radio" name="code_review" value="Required before merge">
+                        <span>Required before merge</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="code_review" value="Optional">
+                        <span>Optional</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="code_review" value="Not used">
+                        <span>Not used</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Deployment</label>
+                <div class="radio-group" data-name="deployment">
+                    <label class="radio-option">
+                        <input type="radio" name="deployment" value="CI/CD auto-deploy">
+                        <span>CI/CD auto-deploy</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="deployment" value="Manual deploy">
+                        <span>Manual deploy</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="deployment" value="Preview environments">
+                        <span>Preview environments</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Team Members -->
+        <div class="wizard-step" data-step="5" id="step-team">
+            <div class="step-header">
+                <h2>Your team</h2>
+                <p>Who will your intern work with? All fields are optional.</p>
+            </div>
+
+            <div class="repeatable-group" id="team-members">
+                <!-- Team member cards inserted by JS -->
+            </div>
+
+            <button type="button" class="add-btn" id="add-team-member">+ Add team member</button>
+        </div>
+
+        <!-- Step 7: Knowledge Upload -->
+        <div class="wizard-step" data-step="6" id="step-knowledge">
+            <div class="step-header">
+                <h2>Knowledge upload</h2>
+                <p>Give your intern a head start with existing documentation and config. All optional.</p>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Documents</label>
+                <span class="field-hint">Architecture docs, style guides, runbooks — anything that helps your intern understand your systems</span>
+                <div class="file-upload-area" id="file-upload-area">
+                    <input type="file" id="documents" name="documents" multiple>
+                    <div class="file-upload-icon">&#128196;</div>
+                    <div class="file-upload-text">Click to upload or drag files here</div>
+                    <div class="file-upload-hint">PDF, MD, TXT, DOCX — up to 10MB each</div>
+                </div>
+                <div class="file-list" id="file-list"></div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="existing_config">Existing configuration</label>
+                <span class="field-hint">Paste any existing CLAUDE.md, AGENTS.md, or similar config</span>
+                <textarea class="field-input mono" id="existing_config" name="existing_config" placeholder="# CLAUDE.md&#10;&#10;## Project Context&#10;..."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Repositories</label>
+                <span class="field-hint">Git URLs of key repos your intern should know about</span>
+                <div class="repeatable-group" id="repo-list">
+                    <!-- Repo inputs inserted by JS -->
+                </div>
+                <button type="button" class="add-btn" id="add-repo">+ Add repository</button>
+            </div>
+        </div>
+
+        <!-- Step 8: Review & Submit -->
+        <div class="wizard-step" data-step="7" id="step-review">
+            <div class="step-header">
+                <h2>Review & submit</h2>
+                <p>Review your answers before submitting. Click "Edit" to go back to any section.</p>
+            </div>
+
+            <div id="review-content">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Wizard Nav -->
+    <div class="wizard-nav" id="wizard-nav">
+        <button type="button" class="btn btn-ghost" id="btn-back" style="display: none;">Back</button>
+        <button type="button" class="btn btn-primary" id="btn-next">Next</button>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="success-screen" id="success-screen">
+        <div class="success-icon">&#10003;</div>
+        <h2>You're all set.</h2>
+        <p>We've got everything we need. Your intern's training starts now — we'll reach out when it's ready to go.</p>
+        <div style="margin-top: 24px;">
+            <a href="/" class="btn btn-ghost">Back to X-Arc</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <span>&copy; 2026 X-Arc Lab</span>
+                <div class="footer-links">
+                    <a href="https://github.com/MoujahidAnas/CCX" target="_blank" rel="noopener">GitHub</a>
+                    <a href="mailto:founders@x-arc.ai">founders@x-arc.ai</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle — identical to index.html
+        (function() {
+            var btn = document.getElementById('theme-toggle');
+            var icon = btn.querySelector('.theme-icon');
+            var stored = localStorage.getItem('xarc-theme');
+            var preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            var theme = stored || preferred;
+            document.documentElement.dataset.theme = theme;
+            updateIcon(theme);
+
+            btn.addEventListener('click', function() {
+                var current = document.documentElement.dataset.theme;
+                var next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.dataset.theme = next;
+                localStorage.setItem('xarc-theme', next);
+                updateIcon(next);
+            });
+
+            function updateIcon(t) {
+                icon.textContent = t === 'dark' ? '\u2600' : '\u263E';
+            }
+        })();
+
+        // Wizard
+        (function() {
+            'use strict';
+
+            var STORAGE_KEY = 'xarc-onboarding';
+            var TOTAL_STEPS = 8;
+            var currentStep = 0;
+
+            var STEP_NAMES = [
+                'Identity',
+                'Company',
+                'Stack',
+                'Communication',
+                'Workflow',
+                'Team',
+                'Knowledge',
+                'Review'
+            ];
+
+            var REQUIRED_FIELDS = {
+                0: ['company_name', 'your_name', 'your_role'],
+                1: ['what_does_your_company_do'],
+                2: ['primary_languages', 'source_control', 'github_org'],
+                3: ['tone', 'verbosity', 'proactive_updates'],
+                4: [],
+                5: [],
+                6: [],
+                7: []
+            };
+
+            var teamMemberCount = 0;
+            var repoCount = 0;
+            var uploadedFiles = [];
+
+            // ============================================
+            // Progress Bar
+            // ============================================
+            function buildProgressBar() {
+                var bar = document.getElementById('progress-bar');
+                bar.innerHTML = '';
+                for (var i = 0; i < TOTAL_STEPS; i++) {
+                    var segment = document.createElement('div');
+                    segment.className = 'progress-segment';
+                    if (i < currentStep) segment.classList.add('completed');
+                    if (i === currentStep) segment.classList.add('active');
+                    bar.appendChild(segment);
+                }
+                document.getElementById('progress-step-name').textContent = STEP_NAMES[currentStep];
+                document.getElementById('progress-step-count').textContent = 'Step ' + (currentStep + 1) + ' of ' + TOTAL_STEPS;
+            }
+
+            // ============================================
+            // Step Navigation
+            // ============================================
+            function goToStep(stepIndex) {
+                if (stepIndex < 0 || stepIndex >= TOTAL_STEPS) return;
+
+                var steps = document.querySelectorAll('.wizard-step');
+                for (var i = 0; i < steps.length; i++) {
+                    steps[i].classList.remove('active');
+                }
+
+                steps[stepIndex].classList.add('active');
+                currentStep = stepIndex;
+
+                buildProgressBar();
+
+                var backBtn = document.getElementById('btn-back');
+                var nextBtn = document.getElementById('btn-next');
+
+                backBtn.style.display = currentStep === 0 ? 'none' : '';
+                nextBtn.textContent = currentStep === TOTAL_STEPS - 1 ? 'Submit' : 'Next';
+
+                if (currentStep === TOTAL_STEPS - 1) {
+                    buildReviewHTML();
+                }
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                saveProgress();
+            }
+
+            document.getElementById('btn-next').addEventListener('click', function() {
+                if (currentStep === TOTAL_STEPS - 1) {
+                    submitForm();
+                    return;
+                }
+
+                if (!validateStep(currentStep)) return;
+
+                goToStep(currentStep + 1);
+            });
+
+            document.getElementById('btn-back').addEventListener('click', function() {
+                goToStep(currentStep - 1);
+            });
+
+            // ============================================
+            // Validation
+            // ============================================
+            function validateStep(stepIndex) {
+                var required = REQUIRED_FIELDS[stepIndex];
+                if (!required || required.length === 0) return true;
+
+                var valid = true;
+
+                for (var i = 0; i < required.length; i++) {
+                    var fieldName = required[i];
+                    var fieldValid = validateField(fieldName);
+                    if (!fieldValid) valid = false;
+                }
+
+                return valid;
+            }
+
+            function validateField(fieldName) {
+                var input = document.querySelector('[name="' + fieldName + '"]');
+
+                if (input && (input.type === 'text' || input.tagName === 'TEXTAREA')) {
+                    var val = input.value.trim();
+                    var errorEl = document.getElementById(fieldName + '-error');
+                    if (!val) {
+                        input.classList.add('error');
+                        if (errorEl) errorEl.classList.add('visible');
+                        return false;
+                    } else {
+                        input.classList.remove('error');
+                        if (errorEl) errorEl.classList.remove('visible');
+                        return true;
+                    }
+                }
+
+                var radioGroup = document.querySelector('.radio-group[data-name="' + fieldName + '"]');
+                if (radioGroup) {
+                    var checked = radioGroup.querySelector('input[type="radio"]:checked');
+                    var errorEl = document.getElementById(fieldName + '-error');
+                    if (!checked) {
+                        if (errorEl) errorEl.classList.add('visible');
+                        return false;
+                    } else {
+                        if (errorEl) errorEl.classList.remove('visible');
+                        return true;
+                    }
+                }
+
+                var chipGroup = document.querySelector('.chip-group[data-name="' + fieldName + '"]');
+                if (chipGroup) {
+                    var checked = chipGroup.querySelectorAll('input[type="checkbox"]:checked');
+                    var errorEl = document.getElementById(fieldName + '-error');
+                    if (checked.length === 0) {
+                        if (errorEl) errorEl.classList.add('visible');
+                        return false;
+                    } else {
+                        if (errorEl) errorEl.classList.remove('visible');
+                        return true;
+                    }
+                }
+
+                var slider = document.getElementById(fieldName);
+                if (slider && slider.type === 'range') return true;
+
+                return true;
+            }
+
+            // Clear errors on input
+            document.addEventListener('input', function(e) {
+                var el = e.target;
+                if (el.classList.contains('field-input') && el.classList.contains('error')) {
+                    if (el.value.trim()) {
+                        el.classList.remove('error');
+                        var errorEl = document.getElementById(el.name + '-error');
+                        if (errorEl) errorEl.classList.remove('visible');
+                    }
+                }
+            });
+
+            // ============================================
+            // Interactive Field Behaviors
+            // ============================================
+            document.addEventListener('change', function(e) {
+                if (e.target.type === 'radio') {
+                    var group = e.target.closest('.radio-group');
+                    if (group) {
+                        var options = group.querySelectorAll('.radio-option');
+                        for (var i = 0; i < options.length; i++) {
+                            options[i].classList.remove('selected');
+                        }
+                        e.target.closest('.radio-option').classList.add('selected');
+
+                        var name = e.target.name;
+                        var errorEl = document.getElementById(name + '-error');
+                        if (errorEl) errorEl.classList.remove('visible');
+                    }
+                }
+
+                if (e.target.type === 'checkbox' && e.target.closest('.chip')) {
+                    var chip = e.target.closest('.chip');
+                    chip.classList.toggle('selected', e.target.checked);
+
+                    var chipGroup = chip.closest('.chip-group');
+                    if (chipGroup && chipGroup.dataset.required) {
+                        var checked = chipGroup.querySelectorAll('input:checked');
+                        var name = chipGroup.dataset.name;
+                        var errorEl = document.getElementById(name + '-error');
+                        if (errorEl && checked.length > 0) errorEl.classList.remove('visible');
+                    }
+                }
+
+                if (e.target.type === 'range') {
+                    var valueEl = document.getElementById(e.target.id + '-value');
+                    if (valueEl) valueEl.textContent = e.target.value;
+                    e.target.style.setProperty('--slider-fill', e.target.value + '%');
+                }
+
+                saveProgress();
+            });
+
+            document.addEventListener('input', function(e) {
+                if (e.target.type === 'range') {
+                    var valueEl = document.getElementById(e.target.id + '-value');
+                    if (valueEl) valueEl.textContent = e.target.value;
+                    e.target.style.setProperty('--slider-fill', e.target.value + '%');
+                }
+            });
+
+            // ============================================
+            // Dynamic Sections: Team Members
+            // ============================================
+            function addTeamMember() {
+                var container = document.getElementById('team-members');
+                var index = teamMemberCount;
+                teamMemberCount++;
+
+                var card = document.createElement('div');
+                card.className = 'repeatable-card';
+                card.dataset.memberIndex = index;
+
+                card.innerHTML = '<div class="repeatable-card-header">' +
+                    '<span class="repeatable-card-title">Team Member ' + teamMemberCount + '</span>' +
+                    '<button type="button" class="repeatable-card-remove" data-action="remove-member">Remove</button>' +
+                '</div>' +
+                '<div class="field-group">' +
+                    '<label class="field-label">Name</label>' +
+                    '<input type="text" class="field-input" name="team_member_' + index + '_name" placeholder="Jane Smith">' +
+                '</div>' +
+                '<div class="field-group">' +
+                    '<label class="field-label">Slack handle</label>' +
+                    '<input type="text" class="field-input" name="team_member_' + index + '_slack" placeholder="@jane">' +
+                '</div>' +
+                '<div class="field-group">' +
+                    '<label class="field-label">Role</label>' +
+                    '<input type="text" class="field-input" name="team_member_' + index + '_role" placeholder="Frontend Lead">' +
+                '</div>' +
+                '<div class="field-group">' +
+                    '<label class="field-label">Timezone</label>' +
+                    '<input type="text" class="field-input" name="team_member_' + index + '_timezone" placeholder="US/Eastern">' +
+                '</div>' +
+                '<div class="field-group">' +
+                    '<label class="field-label">Preferred communication</label>' +
+                    '<div class="radio-group" data-name="team_member_' + index + '_communication">' +
+                        '<label class="radio-option"><input type="radio" name="team_member_' + index + '_communication" value="Brief"><span>Brief</span></label>' +
+                        '<label class="radio-option"><input type="radio" name="team_member_' + index + '_communication" value="Detailed"><span>Detailed</span></label>' +
+                        '<label class="radio-option"><input type="radio" name="team_member_' + index + '_communication" value="Visual"><span>Visual</span></label>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="field-group">' +
+                    '<label class="field-label">Areas of ownership</label>' +
+                    '<textarea class="field-input" name="team_member_' + index + '_ownership" placeholder="Auth, payments, DevOps..."></textarea>' +
+                '</div>';
+
+                container.appendChild(card);
+                saveProgress();
+            }
+
+            document.getElementById('add-team-member').addEventListener('click', addTeamMember);
+
+            document.addEventListener('click', function(e) {
+                if (e.target.dataset.action === 'remove-member') {
+                    var card = e.target.closest('.repeatable-card');
+                    if (card) {
+                        card.remove();
+                        saveProgress();
+                    }
+                }
+            });
+
+            // ============================================
+            // Dynamic Sections: Repositories
+            // ============================================
+            function addRepo() {
+                var container = document.getElementById('repo-list');
+                var index = repoCount;
+                repoCount++;
+
+                var card = document.createElement('div');
+                card.className = 'repeatable-card';
+                card.dataset.repoIndex = index;
+                card.style.padding = '14px 16px';
+
+                card.innerHTML = '<div style="display: flex; gap: 8px; align-items: center;">' +
+                    '<input type="text" class="field-input" name="repo_' + index + '" placeholder="https://github.com/your-org/your-repo" style="flex: 1;">' +
+                    '<button type="button" class="repeatable-card-remove" data-action="remove-repo" style="flex-shrink: 0;">Remove</button>' +
+                '</div>';
+
+                container.appendChild(card);
+                saveProgress();
+            }
+
+            document.getElementById('add-repo').addEventListener('click', addRepo);
+
+            document.addEventListener('click', function(e) {
+                if (e.target.dataset.action === 'remove-repo') {
+                    var card = e.target.closest('.repeatable-card');
+                    if (card) {
+                        card.remove();
+                        saveProgress();
+                    }
+                }
+            });
+
+            // ============================================
+            // File Upload
+            // ============================================
+            var fileArea = document.getElementById('file-upload-area');
+            var fileInput = document.getElementById('documents');
+            var fileListEl = document.getElementById('file-list');
+
+            fileArea.addEventListener('click', function() { fileInput.click(); });
+
+            fileArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                fileArea.classList.add('drag-over');
+            });
+
+            fileArea.addEventListener('dragleave', function() {
+                fileArea.classList.remove('drag-over');
+            });
+
+            fileArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                fileArea.classList.remove('drag-over');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            fileInput.addEventListener('change', function() {
+                handleFiles(fileInput.files);
+                fileInput.value = '';
+            });
+
+            function handleFiles(files) {
+                for (var i = 0; i < files.length; i++) {
+                    uploadedFiles.push(files[i]);
+                }
+                renderFileList();
+                saveProgress();
+            }
+
+            function renderFileList() {
+                fileListEl.innerHTML = '';
+                for (var i = 0; i < uploadedFiles.length; i++) {
+                    var item = document.createElement('div');
+                    item.className = 'file-item';
+                    item.innerHTML = '<span class="file-item-name">' + escapeHTML(uploadedFiles[i].name) + '</span>' +
+                        '<button type="button" class="file-item-remove" data-file-index="' + i + '">&times;</button>';
+                    fileListEl.appendChild(item);
+                }
+            }
+
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('file-item-remove')) {
+                    var idx = parseInt(e.target.dataset.fileIndex);
+                    uploadedFiles.splice(idx, 1);
+                    renderFileList();
+                    saveProgress();
+                }
+            });
+
+            function escapeHTML(str) {
+                var div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
+            }
+
+            // ============================================
+            // localStorage Save/Restore
+            // ============================================
+            function collectFormData() {
+                var data = {};
+
+                var inputs = document.querySelectorAll('.field-input');
+                for (var i = 0; i < inputs.length; i++) {
+                    var el = inputs[i];
+                    if (el.name) data[el.name] = el.value;
+                }
+
+                var radios = document.querySelectorAll('input[type="radio"]:checked');
+                for (var i = 0; i < radios.length; i++) {
+                    data[radios[i].name] = radios[i].value;
+                }
+
+                var chipGroups = document.querySelectorAll('.chip-group');
+                for (var i = 0; i < chipGroups.length; i++) {
+                    var name = chipGroups[i].dataset.name;
+                    var checked = chipGroups[i].querySelectorAll('input:checked');
+                    var values = [];
+                    for (var j = 0; j < checked.length; j++) {
+                        values.push(checked[j].value);
+                    }
+                    data[name] = values;
+                }
+
+                var sliders = document.querySelectorAll('input[type="range"]');
+                for (var i = 0; i < sliders.length; i++) {
+                    data[sliders[i].name] = parseInt(sliders[i].value);
+                }
+
+                var toggle = document.getElementById('emoji_usage');
+                if (toggle) data.emoji_usage = toggle.checked;
+
+                data._uploadedFileNames = uploadedFiles.map(function(f) { return f.name; });
+
+                data._currentStep = currentStep;
+                data._teamMemberCount = teamMemberCount;
+                data._repoCount = repoCount;
+
+                return data;
+            }
+
+            function saveProgress() {
+                try {
+                    var data = collectFormData();
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+                } catch (e) {
+                    // localStorage might be full or disabled
+                }
+            }
+
+            function restoreProgress() {
+                try {
+                    var raw = localStorage.getItem(STORAGE_KEY);
+                    if (!raw) return;
+                    var data = JSON.parse(raw);
+
+                    if (data._teamMemberCount) {
+                        for (var i = 0; i < data._teamMemberCount; i++) {
+                            addTeamMember();
+                        }
+                    }
+
+                    if (data._repoCount) {
+                        for (var i = 0; i < data._repoCount; i++) {
+                            addRepo();
+                        }
+                    }
+
+                    var inputs = document.querySelectorAll('.field-input');
+                    for (var i = 0; i < inputs.length; i++) {
+                        var el = inputs[i];
+                        if (el.name && data[el.name] !== undefined) {
+                            el.value = data[el.name];
+                        }
+                    }
+
+                    var radioInputs = document.querySelectorAll('input[type="radio"]');
+                    for (var i = 0; i < radioInputs.length; i++) {
+                        var r = radioInputs[i];
+                        if (data[r.name] && r.value === data[r.name]) {
+                            r.checked = true;
+                            r.closest('.radio-option').classList.add('selected');
+                        }
+                    }
+
+                    var chipGroups = document.querySelectorAll('.chip-group');
+                    for (var i = 0; i < chipGroups.length; i++) {
+                        var name = chipGroups[i].dataset.name;
+                        if (data[name] && Array.isArray(data[name])) {
+                            var checkboxes = chipGroups[i].querySelectorAll('input[type="checkbox"]');
+                            for (var j = 0; j < checkboxes.length; j++) {
+                                if (data[name].indexOf(checkboxes[j].value) !== -1) {
+                                    checkboxes[j].checked = true;
+                                    checkboxes[j].closest('.chip').classList.add('selected');
+                                }
+                            }
+                        }
+                    }
+
+                    var sliders = document.querySelectorAll('input[type="range"]');
+                    for (var i = 0; i < sliders.length; i++) {
+                        if (data[sliders[i].name] !== undefined) {
+                            sliders[i].value = data[sliders[i].name];
+                            sliders[i].style.setProperty('--slider-fill', data[sliders[i].name] + '%');
+                            var valueEl = document.getElementById(sliders[i].id + '-value');
+                            if (valueEl) valueEl.textContent = data[sliders[i].name];
+                        }
+                    }
+
+                    var toggle = document.getElementById('emoji_usage');
+                    if (toggle && data.emoji_usage !== undefined) {
+                        toggle.checked = data.emoji_usage;
+                    }
+
+                    if (data._currentStep !== undefined && data._currentStep > 0) {
+                        goToStep(data._currentStep);
+                    }
+
+                } catch (e) {
+                    // Corrupted data, ignore
+                }
+            }
+
+            // ============================================
+            // Review & Submit
+            // ============================================
+            var REVIEW_SECTIONS = [
+                {
+                    title: 'Identity',
+                    stepIndex: 0,
+                    fields: [
+                        { key: 'company_name', label: 'Company name' },
+                        { key: 'your_name', label: 'Your name' },
+                        { key: 'your_role', label: 'Role', type: 'radio' },
+                        { key: 'industry', label: 'Industry', type: 'radio' },
+                        { key: 'company_size', label: 'Company size', type: 'radio' }
+                    ]
+                },
+                {
+                    title: 'Company Context',
+                    stepIndex: 1,
+                    fields: [
+                        { key: 'what_does_your_company_do', label: 'What you do' },
+                        { key: 'company_values', label: 'Values', type: 'chips' },
+                        { key: 'special_context', label: 'Special context' }
+                    ]
+                },
+                {
+                    title: 'Technical Stack',
+                    stepIndex: 2,
+                    fields: [
+                        { key: 'primary_languages', label: 'Languages', type: 'chips' },
+                        { key: 'frameworks', label: 'Frameworks', type: 'chips' },
+                        { key: 'source_control', label: 'Source control', type: 'radio' },
+                        { key: 'cloud_provider', label: 'Cloud', type: 'chips' },
+                        { key: 'database', label: 'Database', type: 'chips' },
+                        { key: 'github_org', label: 'GitHub org' }
+                    ]
+                },
+                {
+                    title: 'Communication & Voice',
+                    stepIndex: 3,
+                    fields: [
+                        { key: 'tone', label: 'Tone', type: 'slider', min: 'Professional', max: 'Casual' },
+                        { key: 'verbosity', label: 'Verbosity', type: 'slider', min: 'Concise', max: 'Detailed' },
+                        { key: 'emoji_usage', label: 'Emojis', type: 'toggle' },
+                        { key: 'agent_name', label: 'Intern name' },
+                        { key: 'communication_style', label: 'Preferences' },
+                        { key: 'proactive_updates', label: 'Updates', type: 'radio' }
+                    ]
+                },
+                {
+                    title: 'Workflow & Conventions',
+                    stepIndex: 4,
+                    fields: [
+                        { key: 'pr_workflow', label: 'PR workflow', type: 'radio' },
+                        { key: 'merge_strategy', label: 'Merge strategy', type: 'radio' },
+                        { key: 'branch_naming', label: 'Branch naming' },
+                        { key: 'testing_requirements', label: 'Testing', type: 'chips' },
+                        { key: 'code_review', label: 'Code review', type: 'radio' },
+                        { key: 'deployment', label: 'Deployment', type: 'radio' }
+                    ]
+                },
+                {
+                    title: 'Team Members',
+                    stepIndex: 5,
+                    type: 'team'
+                },
+                {
+                    title: 'Knowledge Upload',
+                    stepIndex: 6,
+                    type: 'knowledge'
+                }
+            ];
+
+            function buildReviewHTML() {
+                var container = document.getElementById('review-content');
+                var data = collectFormData();
+                var html = '';
+
+                for (var s = 0; s < REVIEW_SECTIONS.length; s++) {
+                    var section = REVIEW_SECTIONS[s];
+                    html += '<div class="review-section">';
+                    html += '<div class="review-section-title">' +
+                        escapeHTML(section.title) +
+                        '<button type="button" class="review-edit-btn" data-goto="' + section.stepIndex + '">Edit</button>' +
+                    '</div>';
+                    html += '<div class="review-grid">';
+
+                    if (section.type === 'team') {
+                        var cards = document.querySelectorAll('#team-members .repeatable-card');
+                        if (cards.length === 0) {
+                            html += '<div class="review-row"><span class="review-value empty">No team members added</span></div>';
+                        } else {
+                            for (var c = 0; c < cards.length; c++) {
+                                var idx = cards[c].dataset.memberIndex;
+                                var name = data['team_member_' + idx + '_name'] || '';
+                                var role = data['team_member_' + idx + '_role'] || '';
+                                var display = name || '(unnamed)';
+                                if (role) display += ' \u2014 ' + role;
+                                html += '<div class="review-row"><span class="review-key">Member ' + (c+1) + '</span><span class="review-value">' + escapeHTML(display) + '</span></div>';
+                            }
+                        }
+                    } else if (section.type === 'knowledge') {
+                        if (uploadedFiles.length > 0) {
+                            var fileNames = uploadedFiles.map(function(f) { return f.name; }).join(', ');
+                            html += '<div class="review-row"><span class="review-key">Documents</span><span class="review-value">' + escapeHTML(fileNames) + '</span></div>';
+                        } else {
+                            html += '<div class="review-row"><span class="review-key">Documents</span><span class="review-value empty">None</span></div>';
+                        }
+                        var config = data.existing_config || '';
+                        html += '<div class="review-row"><span class="review-key">Config</span><span class="review-value' + (config ? '' : ' empty') + '">' + (config ? escapeHTML(config.substring(0, 100)) + (config.length > 100 ? '...' : '') : 'None') + '</span></div>';
+                        var repos = [];
+                        var repoCards = document.querySelectorAll('#repo-list .repeatable-card');
+                        for (var r = 0; r < repoCards.length; r++) {
+                            var val = data['repo_' + repoCards[r].dataset.repoIndex] || '';
+                            if (val) repos.push(val);
+                        }
+                        html += '<div class="review-row"><span class="review-key">Repos</span><span class="review-value' + (repos.length ? '' : ' empty') + '">' + (repos.length ? escapeHTML(repos.join(', ')) : 'None') + '</span></div>';
+                    } else {
+                        for (var f = 0; f < section.fields.length; f++) {
+                            var field = section.fields[f];
+                            var value = '';
+
+                            if (field.type === 'radio') {
+                                value = data[field.key] || '';
+                            } else if (field.type === 'chips') {
+                                var arr = data[field.key];
+                                value = (arr && arr.length) ? arr.join(', ') : '';
+                            } else if (field.type === 'slider') {
+                                value = data[field.key] + ' (' + field.min + ' \u2190 ' + field.max + ')';
+                            } else if (field.type === 'toggle') {
+                                value = data[field.key] ? 'Yes' : 'No';
+                            } else {
+                                value = data[field.key] || '';
+                            }
+
+                            var isEmpty = !value || value === '0 (' + field.min + ' \u2190 ' + field.max + ')';
+                            html += '<div class="review-row">' +
+                                '<span class="review-key">' + escapeHTML(field.label) + '</span>' +
+                                '<span class="review-value' + (isEmpty ? ' empty' : '') + '">' + (isEmpty ? 'Not set' : escapeHTML(String(value))) + '</span>' +
+                            '</div>';
+                        }
+                    }
+
+                    html += '</div></div>';
+                }
+
+                container.innerHTML = html;
+            }
+
+            // Edit button in review
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('review-edit-btn')) {
+                    var stepIdx = parseInt(e.target.dataset.goto);
+                    goToStep(stepIdx);
+                }
+            });
+
+            // ============================================
+            // Form Submission
+            // ============================================
+            function submitForm() {
+                var data = collectFormData();
+
+                delete data._currentStep;
+                delete data._teamMemberCount;
+                delete data._repoCount;
+                delete data._uploadedFileNames;
+
+                data.team_members = [];
+                var cards = document.querySelectorAll('#team-members .repeatable-card');
+                for (var i = 0; i < cards.length; i++) {
+                    var idx = cards[i].dataset.memberIndex;
+                    var member = {
+                        name: data['team_member_' + idx + '_name'] || '',
+                        slack_handle: data['team_member_' + idx + '_slack'] || '',
+                        role: data['team_member_' + idx + '_role'] || '',
+                        timezone: data['team_member_' + idx + '_timezone'] || '',
+                        preferred_communication: data['team_member_' + idx + '_communication'] || '',
+                        areas_of_ownership: data['team_member_' + idx + '_ownership'] || ''
+                    };
+                    if (member.name || member.role) data.team_members.push(member);
+                    delete data['team_member_' + idx + '_name'];
+                    delete data['team_member_' + idx + '_slack'];
+                    delete data['team_member_' + idx + '_role'];
+                    delete data['team_member_' + idx + '_timezone'];
+                    delete data['team_member_' + idx + '_communication'];
+                    delete data['team_member_' + idx + '_ownership'];
+                }
+
+                data.repositories = [];
+                var repoCards = document.querySelectorAll('#repo-list .repeatable-card');
+                for (var i = 0; i < repoCards.length; i++) {
+                    var idx = repoCards[i].dataset.repoIndex;
+                    var val = data['repo_' + idx] || '';
+                    if (val) data.repositories.push(val);
+                    delete data['repo_' + idx];
+                }
+
+                console.log('=== X-Arc Onboarding Submission ===');
+                console.log(JSON.stringify(data, null, 2));
+
+                localStorage.removeItem(STORAGE_KEY);
+
+                document.getElementById('wizard').style.display = 'none';
+                document.getElementById('wizard-nav').style.display = 'none';
+                document.getElementById('success-screen').classList.add('visible');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // ============================================
+            // Initialize
+            // ============================================
+            function init() {
+                buildProgressBar();
+
+                var sliders = document.querySelectorAll('input[type="range"]');
+                for (var i = 0; i < sliders.length; i++) {
+                    sliders[i].style.setProperty('--slider-fill', sliders[i].value + '%');
+                }
+
+                restoreProgress();
+            }
+
+            init();
+
+        })();
+    </script>
+
+</body>
+</html>
