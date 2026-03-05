@@ -579,6 +579,8 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             -webkit-overflow-scrolling: touch;
+            margin-left: -120px;
+            margin-right: -120px;
         }
 
         .compare-table {
@@ -589,8 +591,8 @@
             table-layout: fixed;
         }
 
-        .compare-table col.col-label { width: 15%; }
-        .compare-table col.col-content { width: 28.33%; }
+        .compare-table col.col-label { width: 11%; }
+        .compare-table col.col-content { width: 29.6%; }
 
         .compare-table th {
             text-align: left;
@@ -1045,6 +1047,7 @@
             .section-title { font-size: 1.4rem; }
             .solution-tracks { grid-template-columns: 1fr; }
             .tech-points { grid-template-columns: 1fr; }
+            .compare-wrap { margin-left: 0; margin-right: 0; }
             .compare-table { min-width: 480px; }
             .step { flex-direction: column; gap: 8px; }
             .team-grid { grid-template-columns: 1fr; }
@@ -1097,12 +1100,6 @@
                     <a href="#proof"><img src="3edlogo_nobg.png" alt="3ED Productions"></a>
                     <a href="https://www.aspirepeople.co.uk/" target="_blank" rel="noopener"><img src="aspire_nobg.png" alt="Aspire People"></a>
                     <a href="https://www.wharris.co/" target="_blank" rel="noopener"><img src="harris_caseguard_nobg.png" alt="W. Harris / CaseGuard"></a>
-                </div>
-            </div>
-            <div class="logo-bar" style="margin-top: 16px;">
-                <p class="logo-bar-label">Technology selected by</p>
-                <div class="logo-bar-logos">
-                    <a href="https://youtu.be/rBzSIPf4jVY" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px;"><img src="anthropic_shortlogo.png" alt="Anthropic" style="max-height: 22px;"><span style="font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted);">Live demo at Anthropic&rsquo;s SF showcase</span></a>
                 </div>
             </div>
         </section>
@@ -1203,7 +1200,7 @@
                     <h3>Titan Network</h3>
                     <span class="proof-cc">CCT0</span>
                     <span class="proof-type">Deployed &middot; Running</span>
-                    <p>Embedded in a 6,000-member company's 1,400-file platform. Ships new features, fixes bugs, maintains 5 external integrations and 6 AI agents. Full-stack, continuously.</p>
+                    <p>Built TitanConnect &mdash; a plugin that gives 6,000+ members Titan&rsquo;s knowledge and their Amazon data inside any AI tool. 28 tools, instant setup. Live and evolving.</p>
                     <span class="proof-meta"><a href="/titan" class="proof-cta">See case study &rarr;</a></span>
                 </div>
                 <div class="proof-card">
@@ -1258,18 +1255,18 @@
                             <th></th>
                             <th class="col-highlight">Your Digital Intern</th>
                             <th>Human Hire</th>
-                            <th>OpenClaw / DIY</th>
+                            <th>AI Agent Tools <span style="font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 0.6rem;">(OpenClaw, etc.)</span></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="row-label">You give a task</td>
+                            <td class="row-label">Execution</td>
                             <td class="col-highlight">Does it end to end. You review.</td>
                             <td>Needs direction and managing.</td>
                             <td>You configure it yourself. Hope it works.</td>
                         </tr>
                         <tr>
-                            <td class="row-label">Knows your business</td>
+                            <td class="row-label">Context</td>
                             <td class="col-highlight">Trained on your business before day one.</td>
                             <td>Weeks to ramp up. Forgets.</td>
                             <td>Starts generic. You teach it manually.</td>
@@ -1281,20 +1278,20 @@
                             <td>No verification. Sends whatever it generates.</td>
                         </tr>
                         <tr>
-                            <td class="row-label">Builds things</td>
-                            <td class="col-highlight">Ships real tools and features to production.</td>
-                            <td>Only if they're technical.</td>
-                            <td>Can write code. Can&rsquo;t ship production systems.</td>
+                            <td class="row-label">Growth</td>
+                            <td class="col-highlight">Learns from mistakes. Evolves with your business.</td>
+                            <td>Depends on motivation and retention.</td>
+                            <td>Static. You rebuild when requirements change.</td>
                         </tr>
                         <tr>
                             <td class="row-label">Accountability</td>
-                            <td class="col-highlight">X-Arc trains, monitors, and improves your intern.</td>
+                            <td class="col-highlight">Listens to your feedback. Learns. Improves.</td>
                             <td>You manage them.</td>
                             <td>You&rsquo;re on your own. Community support.</td>
                         </tr>
                         <tr>
                             <td class="row-label">Security</td>
-                            <td class="col-highlight">Managed access. Business context secured by X-Arc.</td>
+                            <td class="col-highlight">Scoped access. Built-in guardrails and audit trails.</td>
                             <td>Standard HR and NDA.</td>
                             <td>Full access to your systems. Misconfigured = exposed.</td>
                         </tr>

@@ -749,11 +749,10 @@
             <ul class="toc">
                 <li><a href="#top" class="active">Overview</a></li>
                 <li><a href="#challenge">The Challenge</a></li>
-                <li><a href="#solution">The Intern</a></li>
-                <li><a href="#working-with">Working With CCT0</a></li>
-                <li><a href="#how-it-works">What CCT0 Handles</a></li>
+                <li><a href="#solution">TitanConnect</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#results">The Numbers</a></li>
-                <li><a href="#proof">The Proof</a></li>
+                <li><a href="#proof">Live Now</a></li>
                 <li><a href="#compounding">It Gets Better</a></li>
             </ul>
         </aside>
@@ -765,7 +764,7 @@
             <header class="article-header" id="top">
                 <img src="titan_nobg.png" alt="Titan Network" class="article-header-logo">
                 <span class="article-label">Case Study</span>
-                <h1>A 1,400-file platform. One team. Then a digital intern joined.</h1>
+                <h1>6,000 members. One plugin. Every member gets Titan&rsquo;s knowledge in their AI tools.</h1>
                 <div class="article-meta">
                     <span class="article-meta-badge">CCT0</span>
                     <span class="article-meta-text">Deployed &middot; Running</span>
@@ -774,111 +773,57 @@
 
             <!-- THE CHALLENGE -->
             <article class="prose reveal" id="challenge">
-                <h2>Titan Network runs on a platform most dev teams couldn't build.</h2>
-                <p>Titan Network is one of the largest Amazon education companies in the world. 6,000+ members. 5 business units. ~100 staff. The company runs on a custom internal platform. A system so deep and so integrated that it powers every part of the operation.</p>
-                <p><strong>1,400+ files. 210+ database tables. 16 feature modules. 540+ API endpoints. 5 external integrations. 6 live AI agents.</strong> Built in-house. That's rare.</p>
-                <p>But a platform this size needs dedicated engineering to keep pushing forward. The codebase reflects years of deep domain knowledge: too complex for a contractor to ramp up on, too interconnected for a new hire to take over safely. Leadership's time was being pulled into maintenance instead of the strategic work that grows the business.</p>
+                <h2>Titan Network had the knowledge. Members couldn&rsquo;t access it where they work.</h2>
+                <p>Titan Network is one of the largest Amazon education companies in the world. 6,000+ members across 5 business units. The company has years of deep expertise in Amazon selling &mdash; strategies, PPC optimization, brand analytics, supplier management.</p>
+                <p>But that knowledge lived in courses, calls, and community threads. Members were already using AI tools like OpenClaw and Claude Code to run their businesses. <strong>Titan&rsquo;s expertise wasn&rsquo;t available where members actually work.</strong></p>
+                <p>The challenge: take everything Titan knows, combine it with each member&rsquo;s own Amazon data, and deliver it through the tools members already use. Not a new app to learn. Not a chatbot on a website. A plugin that works inside their existing workflow.</p>
                 <div class="pullquote">
-                    <p>1,400+ files. 210+ tables. 16 modules. Built in-house. That's exceptional engineering. But a platform this size deserves dedicated capacity, so the people who built it can focus on where they have the most impact.</p>
+                    <p>Members were using AI tools every day. Titan&rsquo;s expertise wasn&rsquo;t in any of them.</p>
                 </div>
             </article>
 
-            <!-- THE INTERN -->
+            <!-- TITANCONNECT -->
             <article class="prose reveal" id="solution">
-                <h2>We deployed an intern that understood the entire platform on day one.</h2>
-                <p>X-Arc trained and deployed CCT0, a digital intern embedded directly into Titan's codebase. Not a contractor who needs 3 months to ramp up. Not a junior hire who can only touch one module.</p>
-                <p><strong>CCT0 reads every file, every table, every migration.</strong> It understands the architecture, the integration points, the business logic, the AI agent framework. From its first commit, it works across the full stack: backend, frontend, database, integrations, AI.</p>
-                <p>Titan's leadership went from writing code to directing the architecture. Setting the vision while the intern handles execution across the full stack.</p>
+                <h2>TitanConnect: Titan&rsquo;s knowledge as a plugin for any AI tool.</h2>
+                <p>X-Arc built and deployed TitanConnect &mdash; a plugin that gives every Titan member access to the company&rsquo;s full knowledge base and their own Amazon seller data, directly inside the AI tools they already use.</p>
+                <p><strong>28 AI tools. Instant setup. Works with OpenClaw, Claude Code, Codex, and any MCP-compatible agent.</strong> Members connect once, and their AI tool immediately understands Titan&rsquo;s strategies, their brand&rsquo;s performance data, and their PPC campaigns.</p>
+                <p>No new interface to learn. No separate app. The knowledge shows up where the member is already working.</p>
                 <div class="pullquote">
-                    <p>Most new hires spend their first quarter understanding the code. CCT0 understood it before its first commit.</p>
+                    <p>One install. 28 tools. Titan&rsquo;s expertise and your Amazon data, inside the AI you already use.</p>
                 </div>
             </article>
 
-            <!-- WORKING WITH CCT0 -->
-            <article class="prose reveal" id="working-with">
-                <h2>Titan sets direction. The intern builds and maintains.</h2>
-                <p>CCT0 does two jobs at once. It pushes the platform forward with new features. And it keeps the existing system healthy: debugging, fixing, tuning. Titan's team focuses on strategy and architecture decisions. The intern handles execution.</p>
-
-                <div class="interaction-container">
-                    <div class="interaction-flow">
-                        <div class="interaction-msg client">
-                            <span class="msg-label">Titan</span>
-                            The reconciliation module is drifting again. Stripe webhook data doesn't match GHL. Also, I need a new endpoint for the marketing campaign module to pull conversion rates by channel.
-                        </div>
-                        <div class="interaction-msg intern">
-                            <span class="msg-label">CCT0</span>
-                            On it. The Stripe drift is a timezone mismatch in the 12h cron job. I'll fix the reconciliation logic and add a validation check. For the marketing module, I'll create the endpoint with proper filtering and add it to the existing campaign analytics page.
-                        </div>
-                        <div class="interaction-msg client">
-                            <span class="msg-label">Titan</span>
-                            Good. The at-risk detection model is also flagging too many false positives. And I want the planning module to support quarterly OKR rollups.
-                        </div>
-                        <div class="interaction-msg intern">
-                            <span class="msg-label">CCT0</span>
-                            I'll tune the at-risk thresholds based on the latest churn data and add a confidence score to reduce noise. For the OKR rollups, I'll extend the planning endpoints to aggregate across quarters. Both changes will go through the existing CI pipeline.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="two-jobs">
-                    <div class="two-jobs-card">
-                        <h3>New Features</h3>
-                        <p>New modules, new integrations, new AI capabilities. Titan sets the roadmap. CCT0 takes the feature backlog and ships it.</p>
-                    </div>
-                    <div class="two-jobs-card">
-                        <h3>System Health</h3>
-                        <p>Bug fixes, integration maintenance, prompt tuning, performance monitoring. A 1,400-file platform with 5 external integrations generates issues constantly. CCT0 handles it.</p>
-                    </div>
-                </div>
-
-                <p>Titan's team shifted from writing code to directing the platform's evolution. Where it has the most impact.</p>
-            </article>
-
-            <!-- WHAT CCT0 HANDLES -->
+            <!-- HOW IT WORKS -->
             <article class="prose reveal" id="how-it-works">
-                <h2>What CCT0 handles across the full platform.</h2>
+                <h2>What TitanConnect gives every member.</h2>
 
                 <div class="pipeline-list">
                     <div class="pipeline-item">
                         <span class="pipeline-num">01</span>
                         <div>
-                            <h4>Feature development</h4>
-                            <p>New modules, new endpoints, new UI pages. From the planning module (118 endpoints) to the marketing campaign system (37 endpoints). CCT0 ships what Titan specs out.</p>
+                            <h4>Titan knowledge tools</h4>
+                            <p>4 tools that give the AI access to Titan&rsquo;s full methodology. Strategies, frameworks, PPC playbooks, sourcing guides. The AI answers with Titan&rsquo;s expertise, not generic advice.</p>
                         </div>
                     </div>
                     <div class="pipeline-item">
                         <span class="pipeline-num">02</span>
                         <div>
-                            <h4>Integration maintenance</h4>
-                            <p>5 Stripe accounts, 3 GoHighLevel instances, Circle.so, Fathom, Titan Data API. Webhooks break, cron jobs drift, APIs change. CCT0 keeps them all running.</p>
+                            <h4>Amazon seller data tools</h4>
+                            <p>2 tools that connect the member&rsquo;s Amazon account. The AI sees their actual brand data &mdash; sales, rankings, inventory. Answers grounded in real numbers, not guesses.</p>
                         </div>
                     </div>
                     <div class="pipeline-item">
                         <span class="pipeline-num">03</span>
                         <div>
-                            <h4>AI agent development</h4>
-                            <p>6 live AI agents: recommendation, intelligence, planning, smart goal, campaign, team insights. Prompt tuning, new capabilities, cost optimisation across tiered model routing.</p>
+                            <h4>PPC and analytics tools</h4>
+                            <p>22 tools covering campaign performance, keyword data, spend optimization, and brand analytics. The AI can analyze their PPC and suggest specific actions based on Titan&rsquo;s methodology.</p>
                         </div>
                     </div>
                     <div class="pipeline-item">
                         <span class="pipeline-num">04</span>
                         <div>
-                            <h4>Bug fixing and system health</h4>
-                            <p>Reconciliation drift, false positive alerts, UI regressions, edge cases. CCT0 debugs, patches, and validates through the existing CI pipeline.</p>
-                        </div>
-                    </div>
-                    <div class="pipeline-item">
-                        <span class="pipeline-num">05</span>
-                        <div>
-                            <h4>Database and migrations</h4>
-                            <p>210+ tables, 52+ Alembic migrations, schema changes, performance tuning. CCT0 handles the full data layer: models, migrations, queries, indexes.</p>
-                        </div>
-                    </div>
-                    <div class="pipeline-item">
-                        <span class="pipeline-num">06</span>
-                        <div>
-                            <h4>CI/CD and deployment</h4>
-                            <p>GitHub Actions pipeline with schema drift check gates. CCT0 pushes to main, deploys, and monitors. Same rigorous process Titan established, now executed by the intern.</p>
+                            <h4>Works everywhere</h4>
+                            <p>MCP + REST compatible. OpenClaw, Claude Code, Codex &mdash; any tool that supports plugins. Members don&rsquo;t switch tools. TitanConnect meets them where they are.</p>
                         </div>
                     </div>
                 </div>
@@ -888,53 +833,46 @@
 
             <!-- THE NUMBERS -->
             <article class="prose reveal" id="results">
-                <h2>Numbers. Not promises.</h2>
+                <h2>What shipped.</h2>
                 <div class="metrics-grid">
                     <div class="metric-card">
-                        <span class="metric-value">1,400+</span>
-                        <span class="metric-label">Files in the codebase</span>
+                        <span class="metric-value">28</span>
+                        <span class="metric-label">AI tools available</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">210+</span>
-                        <span class="metric-label">Database tables</span>
+                        <span class="metric-value">6,000+</span>
+                        <span class="metric-label">Members with access</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">16</span>
-                        <span class="metric-label">Feature modules maintained</span>
+                        <span class="metric-value">3+</span>
+                        <span class="metric-label">AI tools supported</span>
                     </div>
                     <div class="metric-card">
-                        <span class="metric-value">540+</span>
-                        <span class="metric-label">API endpoints</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-value">6</span>
-                        <span class="metric-label">Live AI agents</span>
-                    </div>
-                    <div class="metric-card">
-                        <span class="metric-value">5</span>
-                        <span class="metric-label">External integrations</span>
+                        <span class="metric-value">v1</span>
+                        <span class="metric-label">Live and evolving</span>
                     </div>
                 </div>
                 <p><a href="https://calendly.com/anas-x-arc/30min" class="inline-cta" target="_blank" rel="noopener">Hire Your Intern</a></p>
             </article>
 
-            <!-- THE PROOF -->
+            <!-- LIVE NOW -->
             <article class="prose reveal" id="proof">
-                <h2>This isn't a side project. It's the operating system for a 6,000-member company.</h2>
-                <p>TitanConnect is live. ~100 staff across 5 business units use it daily. Members, tasks, onboarding, performance tracking, reconciliation, AI recommendations, planning, marketing, HR. All managed through a single platform.</p>
+                <h2>TitanConnect is live. The intern is maintaining it.</h2>
+                <p>Version one is deployed at titanconnect.titannetwork.com. Members can install the plugin, connect their Amazon data, and start using Titan&rsquo;s knowledge through their AI tools immediately.</p>
 
-                <p>The intern didn't build this platform. It inherited it. And it understands every layer, from the database migrations to the frontend hooks.</p>
+                <img src="titanconnect.jpeg" alt="TitanConnect onboarding — 28 AI tools, instant setup" style="width: 100%; max-width: 560px; border-radius: 8px; border: 1px solid var(--border); margin: 24px 0;">
+
+                <p>X-Arc built TitanConnect and deployed CCT0 &mdash; a digital intern &mdash; to maintain and evolve it. New tools, better data connections, member onboarding improvements. The intern handles the day-to-day so Titan&rsquo;s team can focus on strategy.</p>
             </article>
 
             <!-- THE COMPOUND EFFECT -->
             <article class="prose reveal" id="compounding">
-                <h2>The longer it stays, the better it gets.</h2>
-                <p>Every bug CCT0 fixes teaches it about a new edge case in the platform. Every feature it ships deepens its understanding of the architecture. Every integration issue it resolves makes it faster at diagnosing the next one.</p>
-                <p><strong>A contractor would need 3 months to understand this codebase.</strong> CCT0 had perfect recall from day one. And unlike a human developer who might leave or forget, the intern's understanding compounds indefinitely.</p>
-                <p>A human developer plateaus. The intern compounds.</p>
+                <h2>It&rsquo;s version one. It gets better from here.</h2>
+                <p>TitanConnect launched with 28 tools. As CCT0 listens to member feedback, it adds new tools, improves existing ones, and refines the data connections. Every iteration makes the plugin more useful.</p>
+                <p>More Amazon data sources. Deeper PPC analysis. Action-based tools that don&rsquo;t just inform but execute. The plugin evolves with the business &mdash; because the intern evolves with it.</p>
 
                 <div class="pullquote">
-                    <p>Every bug fix, every feature, every integration issue. The intern compounds its understanding of this platform every day. No ramp-up. No knowledge loss. No turnover.</p>
+                    <p>Version one shipped. The intern is already working on what&rsquo;s next. No handoff. No new hire. Just continuous improvement.</p>
                 </div>
 
                 <p><a href="https://calendly.com/anas-x-arc/30min" class="inline-cta" target="_blank" rel="noopener">Hire Your Intern</a></p>
